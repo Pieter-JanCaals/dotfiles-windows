@@ -5,10 +5,18 @@ function Get-AliasCommand {
     )
 
     try {
-        $alias = Get-Alias $Command
-        return ($alias | Select-Object -Property ResolvedCommandName).ResolvedCommandName
+        $alias = ""
+        $alias = Get-Alias $Command -ErrorAction SilentlyContinue
+
+        if ($alias -eq "") {
+            return $alias
+        }
+        else {
+            return ($alias | Select-Object -Property ResolvedCommandName).ResolvedCommandName
+        }
     }
     catch {
+        Write-Host "In catch"
         return ""
     }
 
@@ -19,7 +27,7 @@ function Set-Profile {
     [Alias("rl")]
     [Alias("source")]
     param()
-    
+
     . $HOME\.dotfiles\.pwsh\aliases.ps1
 }
 
@@ -43,14 +51,18 @@ function gd {
     git diff
 }
 
-if ((Get-AliasCommand gp -ne "Push-Git")) {
+$gpAlias = Get-AliasCommand gp
+if ($gpAlias -eq "") {
+    Set-Alias gp Push-Git
+}
+elseif ($gpAlias -ne "Push-Git") {
     Remove-Alias gp -Force
     Set-Alias gp Push-Git
 }
 function Push-Git {
     [Alias("gp")]
     param()
-
+    
     git push
 }
 
@@ -82,7 +94,7 @@ function goto {
             Set-Location -Path "$HOME/devoteam"
         }
         "pr" {
-            Set-Location -Path "$HOME/01-projects"
+            Set-Location -Path "$HOME/01-projects/$(Get-Files $HOME/01-projects | fzf)"
         }
         "dot" {
             Set-Location -Path "$HOME/.dotfiles"
@@ -93,12 +105,15 @@ function goto {
     }
 }
 
+# List files
+
 if (Get-AliasCommand ls -ne "Get-Files") {
     Remove-Alias ls
     Set-Alias ls Get-Files
 }
 
 function Get-Files {
+    [Alias("ls")]
     param(
         [string]$Path = "."
     )
@@ -120,4 +135,14 @@ function la {
     )
 
     eza.exe -lab --group-directories-first -l --git --icons $Path
+}
+
+function Get-Tree {
+    [Alias("tr")]
+    param(
+        [string]$Path = ".",
+        [int]$Depth = 3
+    )
+
+    lsd.exe --tree --depth=$Depth $Path
 }
