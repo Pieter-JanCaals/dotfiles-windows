@@ -22,6 +22,9 @@ if ((Get-AliasCommand gp -ne "Push-Git")) {
     Set-Alias gp Push-Git
 }
 function Push-Git {
+    [Alias("gp")]
+    param()
+
     git push
 }
 
@@ -122,11 +125,11 @@ function Get-AliasCommand {
     )
 
     try {
-        $alias = Get-Alias $Command -ErrorAction SilentlyContinue
+        $alias = Get-Alias $Command
         return ($alias | Select-Object -Property ResolvedCommandName).ResolvedCommandName
     }
     catch {
-        return $null
+        return ""
     }
 
 }
