@@ -67,11 +67,7 @@ function Push-Git {
 }
 
 function gpu {
-    param (
-        $Branch
-    )
-
-    git push -u origin $Branch
+    git push -u origin $(git branch --list | fzf | sed -e "s/[*]*[[:space:]]//g")
 }
 
 function gac {
