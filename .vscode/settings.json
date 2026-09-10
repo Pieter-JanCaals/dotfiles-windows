@@ -1,0 +1,71 @@
+{
+    "workbench.startupEditor": "none",
+    "json.schemaDownload.trustedDomains": {
+        "https://aka.ms": true,
+        "https://developer.microsoft.com/json-schemas/": true,
+        "https://json-schema.org/": true,
+        "https://json.schemastore.org/": true,
+        "https://raw.githubusercontent.com/devcontainers/spec/": true,
+        "https://raw.githubusercontent.com/microsoft/vscode/": true,
+        "https://schemastore.azurewebsites.net/": true,
+        "https://www.schemastore.org/": true
+    },
+    "files.autoSave": "afterDelay",
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
+    "editor.fontLigatures": false,
+    "editor.tokenColorCustomizations": {
+        "[Solarized Dark]": {
+            "textMateRules": [
+                {
+                    "scope": "entity.name.type.class",
+                    "settings": {
+                        "foreground": "#268bd2"
+                    }
+                }
+            ]
+        }
+    },
+    "dart.flutterSdkPath": "C:\\Users\\Pieter-JanCaals\\03-resources\\flutter",
+    "claudeCode.preferredLocation": "sidebar",
+    "dart.env": {},
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "redhat.telemetry.enabled": false,
+    "chat.viewSessions.orientation": "stacked",
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "editor.semanticTokenColorCustomizations": {
+        "[Solarized Dark]": {
+            "rules": {
+                "property:dart": "#93a1a1",
+                "variable:dart": "#839496",
+                "enumMember:dart": "#2aa198"
+            }
+        }
+    },
+    "explorer.confirmDelete": false,
+    "editor.minimap.enabled": false,
+    "yaml.disableSchemaDetection": [
+        "**/.github/workflows/*.yml",
+        "**/.github/workflows/*.yaml",
+        "**/.gitea/workflows/*.yml",
+        "**/.gitea/workflows/*.yaml",
+        "**/.forgejo/workflows/*.yml",
+        "**/.forgejo/workflows/*.yaml"
+    ],
+    "claudeCode.environmentVariables": [
+        
+    ],
+    "terminal.integrated.initialHint": false,
+    "azureTerraform.survey": {
+        "surveyPromptDate": "2026-09-09T07:10:48.403Z",
+        "surveyPromptIgnoredCount": 1
+    },
+    "cSpell.language": "en,nl",
+    "cSpell.userWords": [
+        "chopcheck"
+    ]
+}

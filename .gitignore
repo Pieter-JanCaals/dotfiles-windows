@@ -1,0 +1,9 @@
+# ~\.config is junctioned into this repo, so anything a tool writes there lands
+# here too (e.g. firebase-tools login tokens). Ignore by default, allowlist config.
+.config/*
+!.config/starship.toml
+!.config/git/
+!.config/windows-terminal/
+
+# Runtime state — not config
+.config/windows-terminal/state.json

@@ -1,0 +1,133 @@
+# ~/.config/starship.toml
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# allow longer-running commands to keep executing
+command_timeout = 5000
+
+# Change the default prompt format
+format = """\
+[╭╴](238)$os $all\
+[╰─](238)$character"""
+
+right_format = """
+[](153)\
+$time\
+[](fg:153 bg:033)\
+$battery\
+[](fg:033)"""
+
+# General
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+format = '[$time]($style)'
+style = "bg:153 fg:244"
+
+# Battery
+[battery]
+disabled = false
+format = "[ $percentage](bg:033)[ $symbol]($style)"
+
+[[battery.display]]
+threshold = 100
+charging_symbol = "󰂄 "
+discharging_symbol = "󰁹 "
+style = "bg:033"
+
+# Change the default prompt characters
+[character]
+success_symbol = "[](238)"
+error_symbol = "[](238)"
+
+# No need for env variables as starship provides a way to show your current distro
+[os]
+format ='[$symbol](bold white)'   
+disabled = false
+
+[os.symbols]
+Windows = ""
+Arch = "󰣇"
+Ubuntu = ""
+
+# Shows the username
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = "[$user]($style) "
+disabled = true  # disable in powershell
+show_always = false
+
+[directory]
+truncation_length = 5
+truncation_symbol = "…/"
+home_symbol = "󰋞 ~"
+read_only_style = "197"
+read_only = "  "
+format = "at [$path]($style)[$read_only]($read_only_style) "
+truncate_to_repo = false
+
+[directory.substitutions]
+"01-projects/" = "01/"
+"02-areas/" = "02/"
+"03-resources/" = "03/"
+"04-archives/" = "04/"
+
+[git_branch]
+symbol = ' '
+format = 'on [$symbol$branch]($style) '
+truncation_symbol = '…/'
+style = 'bold green'
+
+# Shows current git status
+[git_status]
+format = '[$all_status$ahead_behind]($style) '
+style = 'bold green'
+conflicted = '🏳'
+up_to_date = ''
+untracked = ' \($count\) '
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+stashed = ' '
+modified = ' '
+staged = '[++\($count\)](green) '
+renamed = '襁 '
+deleted = ' '
+
+[package]
+disabled = true
+
+[dart]
+format = "using [🎯 ($version)](bold red) "
+
+[terraform]
+format = "using [󱁢 $version]($style)"
+
+[vagrant]
+format = "via [ vagrant $version]($style) "
+
+[docker_context]
+format = "via [ $context](bold blue) "
+
+[helm]
+format = "via [ $version](bold purple) "
+
+[python]
+symbol = "󰌠 "
+python_binary = "python3"
+
+[nodejs]
+format = "via [󰎙 $version](bold green) "
+disabled = true
+
+[ruby]
+format = "via [ $version]($style) "
+
+[kubernetes]
+format = 'on [󱃾 $context\($namespace\)](bold purple) '
+disabled = false
+[kubernetes.context_aliases]
+"clcreative-k8s-staging" = "cl-k8s-staging"
+"clcreative-k8s-production" = "cl-k8s-prod"
