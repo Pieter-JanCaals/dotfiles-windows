@@ -28,3 +28,11 @@ $ENV:STARSHIP_CONFIG = "$HOME\.config\starship.toml"
 # $ENV:STARSHIP_DISTRO = "者 xcad"
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
+
+# Report the current directory to Windows Terminal (OSC 9;9) so duplicated panes open in it
+function Invoke-Starship-PreCommand {
+    $loc = $executionContext.SessionState.Path.CurrentLocation
+    if ($loc.Provider.Name -eq "FileSystem") {
+        $host.ui.Write("$([char]27)]9;9;`"$($loc.ProviderPath)`"$([char]27)\")
+    }
+}
