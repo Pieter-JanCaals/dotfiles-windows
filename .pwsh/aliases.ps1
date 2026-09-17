@@ -75,7 +75,9 @@ function Push-Git {
 }
 
 function gpu {
-    git push -u origin $(git branch --list | fzf | sed -e "s/[*]*[[:space:]]//g")
+    $branch = (git branch --list | fzf) -replace '^[*\s]+', '' -replace '\s+$', ''
+    if (-not $branch) { return }
+    git push -u origin $branch
 }
 
 function gac {

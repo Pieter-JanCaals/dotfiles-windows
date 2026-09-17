@@ -67,5 +67,6 @@
     "cSpell.language": "en,nl",
     "cSpell.userWords": [
         "chopcheck"
-    ]
+    ],
+    "claudeCode.hideOnboarding": true
 }
